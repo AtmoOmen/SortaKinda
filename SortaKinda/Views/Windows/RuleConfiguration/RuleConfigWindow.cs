@@ -17,7 +17,7 @@ public class RuleConfigWindow : Window {
     private readonly SortingRuleView view;
     public SortingRule Rule;
 
-    public RuleConfigWindow(SortingRule sortingRule, List<SortingRule> sortingRules) : base($"SortaKinda Rule Configuration - {sortingRule.Name}###RuleConfig{sortingRule.Id}") {
+    public RuleConfigWindow(SortingRule sortingRule, List<SortingRule> sortingRules) : base($"SortaKinda 规则配置 - {sortingRule.Name}###RuleConfig{sortingRule.Id}") {
         Rule = sortingRule;
         ruleList = sortingRules;
         view = new SortingRuleView(sortingRule);
@@ -78,7 +78,7 @@ public class RuleConfigWindow : Window {
         var imGuiName = Rule.Name;
         if (ImGui.InputText("##NameEdit", ref imGuiName, 1024, ImGuiInputTextFlags.AutoSelectAll)) {
             Rule.Name = imGuiName;
-            WindowName = $"SortaKinda Rule Configuration - {Rule.Name}###RuleConfig{Rule.Id}";
+            WindowName = $"SortaKinda 规则配置 - {Rule.Name}###RuleConfig{Rule.Id}";
         }
     }
 
@@ -86,13 +86,13 @@ public class RuleConfigWindow : Window {
         var hotkeyHeld = ImGui.GetIO().KeyShift && ImGui.GetIO().KeyCtrl;
         if (!hotkeyHeld) ImGui.PushStyleVar(ImGuiStyleVar.Alpha, 0.5f);
         ImGui.SameLine();
-        if (ImGui.Button("Delete", ImGuiHelpers.ScaledVector2(100.0f, 23.0f)) && hotkeyHeld) {
+        if (ImGui.Button("删除", ImGuiHelpers.ScaledVector2(100.0f, 23.0f)) && hotkeyHeld) {
             ruleList.Remove(Rule);
             IsOpen = false;
         }
         if (!hotkeyHeld) ImGui.PopStyleVar();
         if (ImGui.IsItemHovered() && !hotkeyHeld) {
-            ImGui.SetTooltip("Hold Shift + Control while clicking to delete this rule");
+            ImGui.SetTooltip("同时按住 Shift + Ctrl 再单击按钮以删除");
         }
     }
 
@@ -107,7 +107,7 @@ public class RuleConfigWindow : Window {
     private void DrawPopupWindow() {
         ImGui.SetNextWindowSize(new Vector2(200.0f, 200.0f), ImGuiCond.Always);
         if (ImGui.BeginPopup("Advanced Options")) {
-            if (ImGui.Checkbox("Use Inclusive Logic", ref Rule.InclusiveAnd)) {
+            if (ImGui.Checkbox("使用包含逻辑", ref Rule.InclusiveAnd)) {
                 SortaKindaController.SortController.SaveConfig();
             }
             

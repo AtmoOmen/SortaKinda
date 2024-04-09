@@ -6,7 +6,7 @@ using KamiLib.Interfaces;
 namespace SortaKinda.Views.Tabs;
 
 public class TutorialConfiguringInventory : ITabItem {
-    public string TabName => "Using Rules";
+    public string TabName => "使用规则";
     public bool Enabled => true;
     public void Draw() {
         ImGuiHelpers.ScaledDummy(10.0f);
@@ -18,10 +18,8 @@ public class TutorialConfiguringInventory : ITabItem {
         ImGui.PopStyleVar();
     }
 
-    private const string UsingRulesHelp = "To use rules, you need to first select a rule on the left side of the configuration window.\n" +
-                                          "The currently selected rule will have a filledin dot next to the color/name of the rule.\n\n" +
-                                          "Once you have a rule selected you can 'paint' your inventory slots on the right side of the configuration window. Painted slots do not have to be adjacent to each other.\n\n" +
-                                          "Whenever a sort is triggered, items that match the rules of a painted inventory slot will try to be moved into those inventory slots, and then re-ordered according to the rule's settings.\n" +
-                                          "Items that don't match a rule but are in a rules inventory slots will be moved out into 'Unsorted' slots.\n\n" +
-                                          "You must always have some inventory slots marked as 'Unsorted'.";
+    private const string UsingRulesHelp = "要使用规则, 先得选中一个分类, 每个分类都会有自己唯一的颜色标识,\n" +
+                                          "选中分类后你就可以在右侧的模拟物品栏界面中绘制分类所要应用的区域, 区域可以不连续\n" +
+                                          "每当开始整理时, 相关物品会先移入这些区域, 然后根据分类所定义的规则来排序\n" +
+                                          "与所有已知分类都无关的物品会被移入 Unsorted 分类区域, 你必须将部分物品槽定义为 Unsorted 分类";
 }

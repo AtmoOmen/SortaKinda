@@ -18,9 +18,9 @@ public class ItemNameFilterTab : IOneColumnRuleConfigurationTab
         SortingRule = rule;
     }
 
-    public string TabName => "Item Name Filter";
+    public string TabName => "物品名称过滤";
     public bool Enabled => true;
-    public string FirstLabel => "Allowed Item Names";
+    public string FirstLabel => "已允许的名称";
     public ISortingRule SortingRule { get; }
 
     public void DrawContents() {
@@ -34,7 +34,7 @@ public class ItemNameFilterTab : IOneColumnRuleConfigurationTab
 
         if (ImGui.BeginChild("##NameFilterChild", new Vector2(0.0f, -50.0f))) {
             if (SortingRule.AllowedItemNames.Count is 0 && SortingRule.AllowedNameRegexes.Count is 0) {
-                ImGui.TextColored(KnownColor.Orange.Vector(), "Nothing Filtered");
+                ImGui.TextColored(KnownColor.Orange.Vector(), "无");
             }
 
             foreach (var name in SortingRule.AllowedItemNames) {
@@ -72,7 +72,7 @@ public class ItemNameFilterTab : IOneColumnRuleConfigurationTab
             setNameFocus = false;
         }
 
-        ImGui.TextColored(KnownColor.Gray.Vector(), "Supports Regex for item name filtering");
+        ImGui.TextColored(KnownColor.Gray.Vector(), "支持输入正则");
 
         if (UserRegex.DrawRegexInput("##NewName", ref newRegex, "Item Name", null, ImGui.GetContentRegionAvail().X - buttonSize.X - ImGui.GetStyle().ItemSpacing.X, ImGui.GetColorU32(KnownColor.OrangeRed.Vector()))) {
             if (newRegex.Regex is not null) {
@@ -94,7 +94,7 @@ public class ItemNameFilterTab : IOneColumnRuleConfigurationTab
         ImGui.PopFont();
 
         if (ImGui.IsItemHovered()) {
-            ImGui.SetTooltip("Add Name");
+            ImGui.SetTooltip("添加名称");
         }
     }
 }

@@ -22,9 +22,9 @@ public class ItemTypeFilterTab : ITwoColumnRuleConfigurationTab {
         SortingRule = rule;
     }
 
-    public string TabName => "Item Type Filter";
-    public string FirstLabel => "Allowed Item Types";
-    public string SecondLabel => "Item Type Search";
+    public string TabName => "物品类型过滤";
+    public string FirstLabel => "已运行的类型";
+    public string SecondLabel => "物品类型搜索";
     public bool Enabled => true;
 
     public ISortingRule SortingRule { get; }
@@ -33,7 +33,7 @@ public class ItemTypeFilterTab : ITwoColumnRuleConfigurationTab {
         uint? removalEntry = null;
         if (ImGui.BeginChild("##ItemFilterChild", ImGui.GetContentRegionAvail() - ImGui.GetStyle().FramePadding, false)) {
             if (SortingRule.AllowedItemTypes.Count is 0) {
-                ImGui.TextColored(KnownColor.Orange.Vector(), "Nothing Filtered");
+                ImGui.TextColored(KnownColor.Orange.Vector(), "无");
             }
 
             foreach (var category in SortingRule.AllowedItemTypes) {
@@ -67,7 +67,7 @@ public class ItemTypeFilterTab : ITwoColumnRuleConfigurationTab {
         }
 
         ImGui.SetNextItemWidth(ImGui.GetContentRegionAvail().X - buttonSize.X - ImGui.GetStyle().ItemSpacing.X);
-        if (ImGui.InputTextWithHint("##SearchBox", "Search...", ref searchString, 1024, ImGuiInputTextFlags.AutoSelectAll)) {
+        if (ImGui.InputTextWithHint("##SearchBox", "搜索...", ref searchString, 1024, ImGuiInputTextFlags.AutoSelectAll)) {
             if (searchString.IsNullOrEmpty()) {
                 searchResults = null;
             }
@@ -87,7 +87,7 @@ public class ItemTypeFilterTab : ITwoColumnRuleConfigurationTab {
 
         if (ImGui.BeginChild("##SearchResultsChild", ImGui.GetContentRegionAvail() - ImGui.GetStyle().FramePadding, false)) {
             if (searchResults is null || searchResults.Count is 0) {
-                ImGui.TextColored(KnownColor.Gray.Vector(), "No Results");
+                ImGui.TextColored(KnownColor.Gray.Vector(), "无");
             }
             else {
                 foreach (var result in searchResults.Where(result => result.Name.RawString is not "")) {

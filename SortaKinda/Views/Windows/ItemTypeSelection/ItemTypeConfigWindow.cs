@@ -13,7 +13,7 @@ namespace SortaKinda.Views.Windows;
 public class ItemTypeConfigWindow : Window {
     private readonly ISortingRule sortingRule;
 
-    public ItemTypeConfigWindow(ISortingRule rule) : base($"SortaKinda All Item Types - {rule.Name}###ItemTypeConfig{rule.Id}") {
+    public ItemTypeConfigWindow(ISortingRule rule) : base($"SortaKinda 全部物品类型 - {rule.Name}###ItemTypeConfig{rule.Id}") {
         sortingRule = rule;
 
         Position = ImGui.GetMainViewport().Size / 2.0f - new Vector2(1024.0f, 720.0f) / 2.0f;

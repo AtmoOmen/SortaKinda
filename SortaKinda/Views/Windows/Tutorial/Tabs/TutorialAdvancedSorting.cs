@@ -6,7 +6,7 @@ using KamiLib.Interfaces;
 namespace SortaKinda.Views.Tabs;
 
 public class TutorialAdvancedSorting : ITabItem {
-    public string TabName => "Advanced Techniques";
+    public string TabName => "进阶技巧";
     public bool Enabled => true;
     public void Draw() {
         ImGuiHelpers.ScaledDummy(10.0f);
@@ -18,11 +18,9 @@ public class TutorialAdvancedSorting : ITabItem {
         ImGui.PopStyleVar();
     }
 
-    private const string AdvancedTech = "SortaKinda evaluates sorting rules in a specific order, " +
-                                        "this allows you to define rules in such a way that you can have items that match multiple rules always end up in one specific section of your inventory.\n\n" +
-                                        "Rules are evaluated from the top of the list (where 'Unsorted' is), to the bottom of the list (where the add new rule button is), " +
-                                        "If an item would be allowed by multiple rules, the rule lowest in the list will get the item in the end.\n\n" +
-                                        "You can use this characteristic of SortaKinda to define generalized sorting rules at the top of the list, and more specific sorting rules at the bottom of the list, " +
-                                        "any items that match the more specific rules at the bottom will have the items in the end.\n\n" +
-                                        "In other words, you can consider the order the rules are in to be a soft-priority system, where the rules on the bottom are more important.";
+    private const string AdvancedTech = "SortaKinda 会依据特定顺序应用排序规则, " +
+                                        "这样你就可以通过组合多个规则以让满足多个排序规则的物品始终待在特定区域\n\n" +
+                                        "排序规则总是从列表最上方开始生效, 直至最下方, " +
+                                        "如果一个物品同时满足多个排序条件的话, 那么排在最下方的才是真正控制其位置的分类\n\n" +
+                                        "你可以使用插件的这一特性来让一般的排序规则分类位于最顶上, 而精细化的分类位于最底下";
 }

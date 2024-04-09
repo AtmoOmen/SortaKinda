@@ -27,7 +27,7 @@ public class ConfigurationWindow : Window {
         Id = "SortaKindaConfigTabBar"
     };
 
-    public ConfigurationWindow() : base("SortaKinda - Configuration Window") {
+    public ConfigurationWindow() : base("SortaKinda - 配置") {
         Size = new Vector2(840, 636);
 
         Flags |= ImGuiWindowFlags.NoScrollbar;
@@ -61,7 +61,7 @@ public class ConfigurationWindow : Window {
     public void OpenConfigWindow() {
         if (!Service.ClientState.IsLoggedIn) return;
         if (Service.ClientState.IsPvP) {
-            Chat.PrintError("The configuration menu cannot be opened while in a PvP area");
+            Chat.PrintError("配置窗口禁止在 PVP 区域内打开");
             return;
         }
 

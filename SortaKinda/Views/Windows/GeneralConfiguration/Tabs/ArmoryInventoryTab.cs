@@ -5,7 +5,7 @@ using SortaKinda.System;
 namespace SortaKinda.Views.Tabs;
 
 public class ArmoryInventoryTab : IInventoryConfigurationTab {
-    public string TabName => "Armory Inventory";
+    public string TabName => "兵装库";
     public bool Enabled => true;
     public void DrawInventory() => SortaKindaController.ModuleController.DrawModule(ModuleName.ArmoryInventory);
 }

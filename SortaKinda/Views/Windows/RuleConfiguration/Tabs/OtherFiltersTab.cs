@@ -12,11 +12,11 @@ public class OtherFiltersTab : ITwoColumnRuleConfigurationTab {
         SortingRule = rule;
     }
 
-    public string TabName => "Other Filters";
+    public string TabName => "其他过滤";
     public bool Enabled => true;
     public ISortingRule SortingRule { get; }
-    public string FirstLabel => "Range Filters";
-    public string SecondLabel => "Item Rarity Filter";
+    public string FirstLabel => "范围过滤";
+    public string SecondLabel => "物品稀有度过滤";
 
     public void DrawLeftSideContents() {
         SortingRule.ItemLevelFilter.DrawConfig();

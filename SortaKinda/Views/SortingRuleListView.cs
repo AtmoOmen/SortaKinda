@@ -60,7 +60,7 @@ public class SortingRuleListView {
             var newRule = new SortingRule {
                 Color = GetRandomColor(),
                 Id = Guid.NewGuid().ToString("N"),
-                Name = "New Rule",
+                Name = "新规则",
                 Index = sortingRules.Count
             };
 
@@ -145,7 +145,7 @@ public class SortingRuleListView {
         if (!hotkeyHeld) ImGui.PopStyleVar();
 
         if (ImGui.IsItemHovered() && !hotkeyHeld) {
-            ImGui.SetTooltip("Hold Shift + Control while clicking to delete this rule");
+            ImGui.SetTooltip("同时按住 Shift + Ctrl 再单击按钮以删除");
         }
     }
 

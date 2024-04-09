@@ -12,15 +12,13 @@ public class SortOrderTab : ITwoColumnRuleConfigurationTab {
         SortingRule = rule;
     }
 
-    public string TabName => "Sort Order";
+    public string TabName => "排序顺序";
     public bool Enabled => true;
     public ISortingRule SortingRule { get; }
-    public string FirstLabel => "Sort By";
-    public string SecondLabel => "Sort Options";
+    public string FirstLabel => "排序依据: ";
+    public string SecondLabel => "排序选项";
 
     public void DrawLeftSideContents() {
-        ImGui.Text("Order items using");
-        ImGuiComponents.HelpMarker("The primary property of an item to use for ordering");
         var sortMode = SortingRule.SortMode;
         DrawRadioEnum(ref sortMode);
 
@@ -28,14 +26,14 @@ public class SortOrderTab : ITwoColumnRuleConfigurationTab {
     }
 
     public void DrawRightSideContents() {
-        ImGui.Text("Sort item by");
-        ImGuiComponents.HelpMarker("Ascending: A -> Z\nDescending Z -> A");
+        ImGui.Text("排序依据: ");
+        ImGuiComponents.HelpMarker("依据拼音首字母");
         var sortDirection = SortingRule.Direction;
         DrawRadioEnum(ref sortDirection);
 
         ImGuiHelpers.ScaledDummy(8.0f);
-        ImGui.Text("Fill inventory slots from");
-        ImGuiComponents.HelpMarker("Top - Items are shifted to the top left-most slots\nBottom - Items are shifted to the bottom right-most slots");
+        ImGui.Text("填充顺序:");
+        ImGuiComponents.HelpMarker("上: 物品先填充进区域的左上角\n下: 物品先填充进区域的右下角");
         var fillMode = SortingRule.FillMode;
         DrawRadioEnum(ref fillMode);
 

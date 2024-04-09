@@ -7,10 +7,10 @@ public class ToggleFiltersTab : IOneColumnRuleConfigurationTab {
         SortingRule = rule;
     }
 
-    public string TabName => "Property Filters";
+    public string TabName => "属性过滤";
     public bool Enabled => true;
     public ISortingRule SortingRule { get; }
-    public string FirstLabel => "Property Filters";
+    public string FirstLabel => "属性过滤";
     
     public void DrawContents() {
         SortingRule.UntradableFilter.DrawConfig();

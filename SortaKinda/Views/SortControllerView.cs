@@ -31,7 +31,7 @@ public class SortControllerView {
         var sortButtonSize = ImGuiHelpers.ScaledVector2(100.0f, 23.0f);
 
         ImGui.SetCursorPosY(ImGui.GetCursorPosY() + 3.0f * ImGuiHelpers.GlobalScale);
-        ImGui.TextUnformatted("Sorting Rules");
+        ImGui.TextUnformatted("排序规则");
 
         ImGui.SameLine(ImGui.GetContentRegionAvail().X - importExportButtonSize.X * 3.0f - sortButtonSize.X - ImGui.GetStyle().ItemSpacing.X * 3.0f);
         ImGui.PushFont(UiBuilder.IconFont);
@@ -39,7 +39,7 @@ public class SortControllerView {
             TutorialWindow.Instance.Open();
         }
         ImGui.PopFont();
-        if (ImGui.IsItemHovered()) ImGui.SetTooltip("Open Help Window");
+        if (ImGui.IsItemHovered()) ImGui.SetTooltip("打开帮助窗口");
 
         ImGui.SameLine();
         ImGui.PushFont(UiBuilder.IconFont);
@@ -47,7 +47,7 @@ public class SortControllerView {
             ImportRules();
         }
         ImGui.PopFont();
-        if (ImGui.IsItemHovered()) ImGui.SetTooltip("Import rules from clipboard");
+        if (ImGui.IsItemHovered()) ImGui.SetTooltip("从剪贴板导入");
 
         ImGui.SameLine();
         ImGui.PushFont(UiBuilder.IconFont);
@@ -55,10 +55,10 @@ public class SortControllerView {
             ExportRules();
         }
         ImGui.PopFont();
-        if (ImGui.IsItemHovered()) ImGui.SetTooltip("Export rules to clipboard");
+        if (ImGui.IsItemHovered()) ImGui.SetTooltip("导出至剪贴板");
 
         ImGui.SameLine();
-        if (ImGui.Button("Sort All", sortButtonSize)) {
+        if (ImGui.Button("手动排序", sortButtonSize)) {
             sortController.SortAllInventories();
         }
 
@@ -71,13 +71,13 @@ public class SortControllerView {
             var uncompressed = Util.DecompressString(decodedString);
 
             if (uncompressed.IsNullOrEmpty()) {
-                Chat.PrintError("Tried to import sorting rules, but got nothing, try copying the code again.");
+                Chat.PrintError("导入排序规则失败, 请重试");
                 return;
             }
 
             if (JsonConvert.DeserializeObject<SortingRule[]>(uncompressed) is { } rules) {
                 if (rules.Length is 0) {
-                    Chat.PrintError("Tried to import sorting rules, but got nothing, try copying the code again.");
+                    Chat.PrintError("导入排序规则失败, 请失败");
                     return;
                 }
 
@@ -90,13 +90,13 @@ public class SortControllerView {
                     }
                 }
 
-                Chat.Print("Import", $"Received {rules.Length} sorting rules from clipboard. ");
-                Chat.Print("Import", $"Added {addedCount} new sorting rules.");
+                Chat.Print("导入", $"从剪贴板接收了 {rules.Length} 条排序规则");
+                Chat.Print("导入", $"添加了 {addedCount} 条新的排序规则");
                 sortController.SaveConfig();
             }
         }
         catch {
-            Chat.PrintError("Something went wrong trying to import rules, check you copied the code correctly.");
+            Chat.PrintError("导入过程中发生未知错误");
         }
     }
 
@@ -107,7 +107,7 @@ public class SortControllerView {
         var compressed = Util.CompressString(jsonString);
         ImGui.SetClipboardText(Convert.ToBase64String(compressed));
 
-        Chat.Print("Export", $"Exported {rules.Length} rules to clipboard.");
+        Chat.Print("导出", $"导出了 {rules.Length} 条规则至剪贴板");
     }
 
     private void DrawRules() => listView.Draw();
